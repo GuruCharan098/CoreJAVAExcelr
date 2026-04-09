@@ -88,25 +88,7 @@ public class DSAArraysProblems {
 		    	return res.toString();
 		    }
 		    
-		    static void printDuplicates(String s) {
-		    	
-		    	char[] arr = s.toCharArray();
-		    	Arrays.sort(arr);
-		    	
-		    	for(int i=0; i<arr.length;) {
-		    		int count = 1;
-		    		
-		    		while(i+count < arr.length && arr[i] == arr[i+count]) {
-		    			count++;
-		    		}
-		    		
-		    		if(count>1) {
-		    			System.out.println("['"+arr[i]+"', "+count+"],");
-		    		}
-		    		
-		    		i += count;
-		    	}
-		    }
+		
 		    
 		    
 		    
@@ -114,8 +96,6 @@ public class DSAArraysProblems {
 	        	
 	        	
 	        	
-	        	String s = "Gurucharandasparamhansi";
-	        	printDuplicates(s);
 	        	
 	        	int[] arr1 = {11,15,6,8,9,10};  // 986151110
 	        	System.out.println(findLargest(arr1));
