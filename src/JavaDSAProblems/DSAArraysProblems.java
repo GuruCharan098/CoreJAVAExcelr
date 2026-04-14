@@ -1,4 +1,4 @@
-package testProject1;
+package JavaDSAProblems;
 import java.util.*;
 public class DSAArraysProblems {
 
