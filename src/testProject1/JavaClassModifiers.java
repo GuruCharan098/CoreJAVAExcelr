@@ -10,6 +10,7 @@ class Ab{
 	}
 }
 
+
 abstract class A{
 	abstract void show();
 }
