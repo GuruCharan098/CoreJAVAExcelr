@@ -1,0 +1,189 @@
+package testProject1;
+
+
+// Without Exception Handling Program....
+public class JavaExceptionExample {
+
+	public static void main(String[] args) {
+		System.out.println("Start");
+		int result = 10/0; // Not define value. 
+		System.out.println("End" + result);
+	}
+}
+// Exception Handling Program....
+class DemoException {
+	public static void main(String[] args) {
+		System.out.println("Start");
+		try {
+			int result1 = 10/0;	
+		}catch(ArithmeticException e) {
+			System.out.println("Handled division by Zero");
+		}
+		System.out.println("End");
+	}
+}
+
+// Runtime Stack Mechanism : Default exception handling
+ class TestStack {
+	 void m1() {
+		 System.out.println("Start");
+		 m2();
+	 }
+	 void m2(){
+		 m3();
+	 }
+	 void m3() {
+		 System.out.println(10/0);
+		 System.out.println("End");
+	 }
+	 public static void main(String[] args) {
+		 new TestStack().m1();
+	 }
+	 
+ }
+ // Customized Handling (Try-Catch);
+ 
+ class Custom {
+	 public static void main(String[] args) {
+		 try {
+			 String s = null;
+			 System.out.println(s.length());
+			 
+		 }catch(ArithmeticException e) {
+			 System.out.println("Null Value detected");
+		 }
+		 System.out.println("End Custom");
+	 }
+ }
+// Printing Exception Info/Metadata;
+ class TestPrintInfo{
+	 public static void main(String[] args) {
+		 try {
+			 int a = 10/0;
+			 
+		 }catch(Exception e) {
+			 System.out.println("1. Println(e)");
+			 System.out.println(e);
+			 
+			 System.out.println("2. ToString Converts");
+			 System.out.println(e.toString());
+			 
+			 System.out.println("3. Print Message");
+			 System.out.println(e.getMessage());
+			 
+			 System.out.println("4. Print Stack trace");
+			 e.printStackTrace();
+		 }
+	 }
+ }
+ 
+ // multiple Catch bodies : 
+ 
+ class MulCatch{
+	 public static void main(String[] args) {
+		 try {
+			 int result = 10/0;
+		 }catch(ArithmeticException e) {
+			 System.out.println("Arithemetic");
+			 
+		 }
+		 try {
+			 int arr[] = new int[3];
+			 arr[5] = 10; 
+		 }
+		 catch(ArrayIndexOutOfBoundsException e){
+			 System.out.println("Array Error");
+		 } 
+		 System.out.println("End");
+	 }
+ }
+ 
+ // Finally Block in Java :
+ class FinallyCheck{
+	 public static void main(String[] args) {
+		 try {
+			 // int result = 10/0;
+			 System.exit(0);
+			 System.out.println("Try Block");
+		
+		 }finally {
+			 System.out.println("Finally Block"); 
+		 }
+	 }
+ }
+ // Finally scope behavior for Return keyword:
+ class FinallyReturn{
+	 public static void main(String[] args) {
+		 System.out.println(test());
+	 }
+	 static int test() {
+		 try {
+			 return 10; 
+		 }
+		 finally {
+			System.out.println("Finally Scope");
+			//return 20; 	
+		 }
+	 }
+	 
+ }
+ 
+ // Finally(Scope) VS Final(Keyword) Vs Finalize(Method)....
+ //finalize Method :
+// class TestFinalize {
+//	 @SuppressWarnings("deprecation")
+//	 protected void finalize() {
+//		 System.out.println("Finalize Called");
+//	 }
+//	 public static void main(String[] args) {
+//		 TestFinalize t1 = new TestFinalize();
+//		 
+//		 t1 = null;  // object eligible for GC (garbage Collection)
+//		 System.gc();
+//		 System.out.println("End of main method");
+//	 }
+// }
+ 
+ // Nested Try-catch 
+ 
+ class NestedTryCatch{
+	 public static void main(String[] args) {
+		 try {
+			 int arr[] = {1,2,3,4,5,6};
+			 arr[5] = 10; 
+			 try {
+				 int a = 10/0;
+			 }catch(ArithmeticException e){
+				 System.out.println("Inner Handled "+ e.getMessage());
+			 }
+		 }catch(ArrayIndexOutOfBoundsException e){
+			 System.out.println("Array Error");
+		 }
+	 }
+ }
+ 
+ // Throw keyword :
+ class ThrowDemo{
+	 static void checkAge(int age) {
+		 if(age < 18) {
+			 throw new ArithmeticException("Not Eligible for Vote");
+		 }else {
+			 System.out.println("Yes..! Eligible for Vote");
+		 }
+	 }
+	 
+	 public static void main(String[] args) {
+		 checkAge(18);
+	 }
+ }
+ 
+ // Throws Keyword : 
+  class ThrowsDemo{
+	  static void m1() throws InterruptedException {
+		  Thread.sleep(2000);
+	  }
+	  public static void main(String[] args) throws InterruptedException {
+			 m1();
+		 }
+  }
+
