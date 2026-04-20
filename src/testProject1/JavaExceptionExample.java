@@ -263,9 +263,9 @@ class DemoException {
   }
   
 // 7. IOException : Input output issues. 
-// Interrupted Exception : thread interruption; 
-// FileNotFoundException : file missing ;
-// SQLException : Database Error ;
+// 8. Interrupted Exception : thread interruption; 
+// 9. FileNotFoundException : file missing ;
+// 10. SQLException : Database Error ;
   
 // Exception Propagation : if a method does not handle an exception, it passes it to it's caller;
   
