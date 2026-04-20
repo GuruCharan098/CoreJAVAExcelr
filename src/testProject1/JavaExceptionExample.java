@@ -46,7 +46,7 @@ class DemoException {
  class Custom {
 	public static void main(String[] args) {
 		 try {
-			 String s = "null";
+			 String s = null;
 			 System.out.println(s.length());
 			 
 		 }catch(ArithmeticException e) {
@@ -60,6 +60,7 @@ class DemoException {
 	 public static void main(String[] args) {
 		 try {
 			 int a = 10/0;
+			 System.out.println("Hello");
 			 
 		 }catch(Exception e) {
 			 System.out.println("1. Println(e)");
@@ -149,7 +150,7 @@ class DemoException {
  class NestedTryCatch{
 	 public static void main(String[] args) {
 		 try {
-			 int arr[] = {1,2,3,4,5,6};
+			 int arr[] = {1,2,3};
 			 arr[5] = 10; 
 			 try {
 				 int a = 10/0;
@@ -179,13 +180,10 @@ class DemoException {
  
  // Throws Keyword : 
  class ThrowsDemo {
-
 	    // Method that delays execution
 	    static void waitForTask() throws InterruptedException {
 	        System.out.println("Task started...");
-	        
-	        Thread.sleep(2000); // may cause InterruptedException
-	        
+	        Thread.sleep(2000); // may cause InterruptedException  
 	        System.out.println("Task completed after 2 seconds");
 	    }
 
@@ -199,3 +197,112 @@ class DemoException {
 	        System.out.println("Program continues...");
 	    }
 	}
+ 
+ // Exception handling Keywords : Try, Catch, Finally, Throw and Throws
+ //Try : wrap risky code / exceptional code
+ // Catch : handle exception 
+ // finally : always executes
+ // throw :  manually throw exception 
+ // throws : declare exception
+ 
+ class DemoExceptionKeywords{
+	    static void checkAge(int age) {
+	    	if(age < 18) {
+	    		throw new ArithmeticException("Not Eligible");
+	    	}else {
+	    		System.out.println("Eligible");	   
+	    	}	
+	    }
+	    public static void main(String[] args) {
+    		try {
+    			checkAge(15);
+    		}catch(ArithmeticException e){
+    			System.out.println(e.getMessage());
+    		}finally {
+    			System.out.println("Execution Completed");
+    		}
+    	}
+ }
+ 
+ // Customized exception :  User defined exceptions 
+  class InvalidAgeException extends Exception {
+	  InvalidAgeException(String msg){
+		  super(msg);
+	  }
+  }
+  
+  class TestExample{
+	  static void checkAge(int age) throws InvalidAgeException {
+		  if(age < 18) {
+			  throw new InvalidAgeException("Too young");
+		  }
+	  }
+	  
+	  public static void main(String[] args) {
+		  try {
+			  checkAge(15);
+		  }catch(InvalidAgeException e) {
+			  System.out.println(e.getMessage());
+		  }
+	  }
+  }
+  
+// Top 10 Common Exceptions in Java : 
+//  1. ArithmeticException : Divide by zero;
+// 2. NullPointerException : Null object access;
+// 3. ArrayIndexOutOfBoundException : Invalid index;
+// 4. NumberFormatException : wrong number format; 
+// 5. ClassCastException : Invalid Casting ;
+// 6. IllegalArgumentException : Invalid Argument ; 
+  
+  class demo {
+	  public static void main(String[] args) {
+		  Thread t = new Thread();
+		  t.setPriority(15); // valid ( 1 to 10)
+	  }
+  }
+  
+// 7. IOException : Input output issues. 
+// Interrupted Exception : thread interruption; 
+// FileNotFoundException : file missing ;
+// SQLException : Database Error ;
+  
+// Exception Propagation : if a method does not handle an exception, it passes it to it's caller;
+  
+  class DemoTest{
+	  static void m1() {
+		  int x = 10/0;
+	  }
+	  static void m2(){
+		  m1();
+	  }
+	  public static void main(String[] args) {
+		  try {
+			  m2();
+		  }catch(Exception e) {
+			  System.out.println("Handled by main" + e.getMessage());
+		 }
+	  }
+  }
+        
+// Re throwing an Exception : 
+  class Demos{
+	  static void m1() {
+		  try {
+			  int x= 10/0;
+		  }catch(ArithmeticException e) {
+			  System.out.println("Logging");
+			  throw e;  // Re-throwing Exception
+		  }
+	  }
+	  
+	  public static void main(String[] args) {
+		  try {
+			  m1();
+		  }catch(Exception e) {
+			  System.out.println("handled Again");
+		  }
+		  
+	  }
+  }
+  
