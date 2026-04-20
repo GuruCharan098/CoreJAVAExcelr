@@ -44,9 +44,9 @@ class DemoException {
  // Customized Handling (Try-Catch);
  
  class Custom {
-	 public static void main(String[] args) {
+	public static void main(String[] args) {
 		 try {
-			 String s = null;
+			 String s = "null";
 			 System.out.println(s.length());
 			 
 		 }catch(ArithmeticException e) {
@@ -178,12 +178,24 @@ class DemoException {
  }
  
  // Throws Keyword : 
-  class ThrowsDemo{
-	  static void m1() throws InterruptedException {
-		  Thread.sleep(2000);
-	  }
-	  public static void main(String[] args) throws InterruptedException {
-			 m1();
-		 }
-  }
+ class ThrowsDemo {
 
+	    // Method that delays execution
+	    static void waitForTask() throws InterruptedException {
+	        System.out.println("Task started...");
+	        
+	        Thread.sleep(2000); // may cause InterruptedException
+	        
+	        System.out.println("Task completed after 2 seconds");
+	    }
+
+	    public static void main(String[] args) {
+	        try {
+	            waitForTask();  // calling method
+	        } catch (InterruptedException e) {
+	            System.out.println("Exception handled in main method");
+	        }
+
+	        System.out.println("Program continues...");
+	    }
+	}
