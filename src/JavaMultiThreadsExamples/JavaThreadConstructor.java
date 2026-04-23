@@ -113,11 +113,14 @@ class Test1 {
 	 }
 }
 
-// Interrupting Thread : (Interrupt, Interrupted and isInterrupted)
+
+// Interrupting Thread : (Interrupt(), Interrupted() and isInterrupted())
+// 1. Interrupt() Method : Used to Send interrupt signal to a thread. 
 class MyThreads01 extends Thread{
 	public void run() {
 		try {
 			Thread.sleep(3000);
+			System.out.println("Start...");
 		}catch(InterruptedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -128,15 +131,16 @@ class Test01{
 	public static void main(String[] args) {
 		MyThreads01 t01 = new MyThreads01();
 		
-		t01.start();
-		t01.interrupt();
+		t01.start();  // start thread
+		t01.interrupt();  //calling Interrupt() 
 	}
 }
-// Better example : 
+
+//2. Interrupted() Method : checks weather current thread is interrupted, Clears interrupt flag after checking.  
 class MyThreads011 extends Thread{
 	public void run() {
 		for(int i =0; i<=3; i++) {
-			if(Thread.interrupted()) {
+			if(Thread.interrupted()) { // interruption signal checks 
 				System.out.println("Stopped due to interrupt...");
 				break;
 			}
@@ -149,10 +153,31 @@ class Test011{
 	public static void main(String[] args) {
 		MyThreads011 t011 = new MyThreads011();
 		t011.start();
-		t011.interrupt();
+		t011.interrupt(); // interruption signal passed 
 	}
 }
 
+//3. isInterrupted() Method :  checks interrupt status and it's does not clear signal/flag. 
+ class MyThread0111 extends Thread{
+	 public void run() {
+		 while(true) {
+			 if(this.isInterrupted()) { 
+				 System.out.println("Thread stopped..." + this.isInterrupted());
+				 break;
+			 }
+			 System.out.println("Running....");
+		 }
+	 }
+ }
+ 
+ class Test0111{
+	 public static void main(String[] args) {
+		 MyThread0111 t = new MyThread0111();
+		 t.start();
+		 
+		 t.interrupt();
+	 }
+ }
 
 
 
