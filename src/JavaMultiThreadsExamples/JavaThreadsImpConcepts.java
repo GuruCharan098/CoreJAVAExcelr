@@ -86,11 +86,12 @@ class TestSync {
         	  t2.start();
           }
 }
-// Inter Thread Communication : Methods (Wait(), notify() and notifyAll() 
+// InterThread Communication : Methods (Wait(), notify() and notifyAll() 
 // 1. wait() : releases that object's lock, Goes into waiting state, generate notification for waits
 // 2. notify() : wakes up one waiting thread, lock is released after Synchronized blocks end.
 // 3. notifyAll() : wakes up all waiting threads, they execute one by one(because of lock)
 
+// Example of Wait() and Notify()
 class ThreadB extends Thread {
 	int total = 0;
 	
@@ -126,7 +127,6 @@ class ThreadA {
 }
 
 // Example for NotifyAll() : 
-
 class SharedRes{
 	synchronized void waitMethod (String name) {
 		try {
