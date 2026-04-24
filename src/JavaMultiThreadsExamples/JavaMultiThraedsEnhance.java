@@ -62,7 +62,140 @@ class Demo2 {
 		
 	}
 }
+//4. Thread Group getParent() : returns parent thread group. 
+// 5. void list() : prints complete details/ metadata of thread group and it's threads. 
 
+class Demo5{
+	public static void main(String[] args) {
+		ThreadGroup g = new ThreadGroup("Group");
+		
+		Thread t1 = new Thread(g,"T1");
+		Thread t2 = new Thread(g,"T2");
+		
+		g.list();
+	}
+}
+
+//6. integer activeCount() : check number count for active thread in Group
+
+class Demo6{
+	public static void main(String[] args) {
+		ThreadGroup g = new ThreadGroup("Group");
+		Thread t1  = new Thread(g, () -> {
+			try {
+				Thread.sleep(2000);
+			}catch(Exception e) {
+				
+			}
+		});
+		
+		Thread t2  = new Thread(g,"T2" );
+		
+		t1.start();
+		t2.start();
+		
+		System.out.println(g.activeCount());
+	}
+}
+//7. Integer activeGroupCount() : check number of active sub thread groups. 
+
+class Demo7{
+	public static void main(String[] args) {
+		ThreadGroup g = new ThreadGroup("Parent");
+		
+		ThreadGroup g1 = new ThreadGroup(g, "Group1");
+		ThreadGroup g2 = new ThreadGroup(g, "Group2");
+		
+		System.out.println(g.activeGroupCount());
+		
+		Thread t1 = new Thread(g2, "T1");
+		t1.start();
+		
+		System.out.println(g2.activeCount());
+	}
+}
+
+//8. Integer enumerate(Thread[] t) : Copies active threads into Array
+
+class Demo8{
+	public static void main(String[] args) {
+		
+	      ThreadGroup g = new ThreadGroup("Parent");
+	      
+	        Thread t1 = new Thread(g,"T1");
+			Thread t2 = new Thread(g,"T2");
+			
+			t1.start();
+			//t2.start();
+			
+			Thread[] thArray = new Thread[g.activeCount()];
+			g.enumerate(thArray);
+			
+			for(Thread t : thArray) {
+				System.out.println(t.getName());
+			}
+	}
+}
+
+//9. Integer enumerate(ThreadGroup[] g) : copies sub thread groups into array
+class Demo9{
+	public static void main(String[] args) {
+		
+	      ThreadGroup g = new ThreadGroup("Parent");
+	      
+	      ThreadGroup t1 = new ThreadGroup(g,"Group-T1");
+	      ThreadGroup t2 = new ThreadGroup(g,"Group-T2");
+					
+	      ThreadGroup[] groups = new ThreadGroup[g.activeGroupCount()];
+			g.enumerate(groups);
+			
+			for(ThreadGroup groupArray : groups) {
+				System.out.println(groupArray.getName());
+			}
+	}
+}
+
+// 10. Boolean isDaemon() and void setDaemon(boolean b)
+class Demo10{
+	@SuppressWarnings("removal")
+	public static void main(String[] args) {
+		ThreadGroup thg = new ThreadGroup("Group");
+		thg.setDaemon(true);
+		System.out.println(thg.isDaemon());
+			
+	}
+}
+
+//11. void interrupt() : 
+class Demo11{
+	public static void main(String[] args) {
+		ThreadGroup tg = new ThreadGroup("Thread-MainGroup");
+		
+		Thread t1 = new Thread(tg,() ->{
+			try {
+				Thread.sleep(5000);
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		
+		t1.start();
+		
+		tg.interrupt();
+	}
+}
+
+// 12. Void destroy() : destroys or delete or remove thread group and subgroups
+
+class Demo12{
+	@SuppressWarnings("removal")
+	public static void main(String[] args) {
+		ThreadGroup tg = new ThreadGroup("Thread-MainGroup");
+		
+		tg.destroy();
+		System.out.println("Destroyed");
+	}
+}
 
 
 
