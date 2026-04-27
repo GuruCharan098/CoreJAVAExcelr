@@ -103,7 +103,7 @@ class DemoException {
  class FinallyCheck{
 	 public static void main(String[] args) {
 		 try {
-			 // int result = 10/0;
+			 // integer result = 10/0;
 			 System.exit(0);
 			 System.out.println("Try Block");
 		
@@ -199,7 +199,7 @@ class DemoException {
 	}
  
  // Exception handling Keywords : Try, Catch, Finally, Throw and Throws
- //Try : wrap risky code / exceptional code
+ //Try : wrap risk code / exceptional code
  // Catch : handle exception 
  // finally : always executes
  // throw :  manually throw exception 
@@ -225,23 +225,23 @@ class DemoException {
  }
  
  // Customized exception :  User defined exceptions 
-  class InvalidAgeException extends Exception {
-	  InvalidAgeException(String msg){
+  class InvalidAgeException1 extends Exception {
+	  InvalidAgeException1(String msg){
 		  super(msg);
 	  }
   }
   
   class TestExample{
-	  static void checkAge(int age) throws InvalidAgeException {
+	  static void checkAge(int age) throws InvalidAgeException1 {
 		  if(age < 18) {
-			  throw new InvalidAgeException("Too young");
+			  throw new InvalidAgeException1("Too young");
 		  }
 	  }
 	  
 	  public static void main(String[] args) {
 		  try {
 			  checkAge(15);
-		  }catch(InvalidAgeException e) {
+		  }catch(InvalidAgeException1 e) {
 			  System.out.println(e.getMessage());
 		  }
 	  }
