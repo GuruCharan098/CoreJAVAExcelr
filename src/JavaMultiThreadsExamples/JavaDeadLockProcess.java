@@ -56,9 +56,7 @@ class MyDaemonThread extends Thread{
 		   //mdt.setDaemon(true);     lazy threads (behavior)
 		   mdt.start();
 		   
-		   System.out.println(mdt.isDaemon()+ " " + "End of Main Thread");
-		   	  
-		   
+		   System.out.println(mdt.isDaemon()+ " " + "End of Main Thread");	   	  	   
 	   }
    }
 
