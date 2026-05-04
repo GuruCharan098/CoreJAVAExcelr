@@ -19,7 +19,7 @@ import java.util.*;
 public class JavaCollectionsExamples {
 	
 	public static void main(String[] args) {
-		// Collection In Java : Growable / dynamic size, hold both Homogeneous and heterogeneous elements, supported in build methods
+		// Collection In Java : Grow-able / dynamic size, hold both Homogeneous and heterogeneous elements, supported in build methods
 		// ArrayList example : 
 		
 		// Constructor calling of ArrayList Collection. 

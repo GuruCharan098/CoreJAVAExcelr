@@ -199,3 +199,151 @@ public class JavaCollectionContainers {
 	 }
  }
  
+// 3. (a) HashSet : Store unique elements only, No order guarantee, fast operation performance, only One Null element, you can store here
+ class JavaHashSetExample {
+	 public static void main(String[] args) {
+		 
+		 HashSet<Object> Hset = new HashSet<>();
+		 
+		 Hset.add("Java");
+		 Hset.add("C++");
+		// In build Methods : contains(), remove(), size(), isEmpty();
+		 
+		 System.out.println(Hset);
+		 
+	 }
+ }
+ 
+ // 3. (b) : LinkedHashSet : order guarantee, Slightly Slower than Hash set, Hash-table + linked list \
+ 
+ class JavaLinkedHashSetExample {
+	 public static void main(String[] args) {
+		 
+		 LinkedHashSet<Object> LHset = new  LinkedHashSet<>();
+		 
+		 LHset.add("JavaScript");
+		 LHset.add("Java");
+		 LHset.add("C++");
+		 LHset.add("Python");
+		 LHset.add("C++");
+		 
+		// In build Methods : contains(), remove(), size(), isEmpty();
+		 
+		 System.out.println( LHset);
+		 
+	 }
+ }
+ 
+ // 3. (c) SortedSet Interface : Ordered Collection, Duplicate items are not allowed. 
+ 
+ class JavaSortedSet{
+	 public static void main(String[] args) {
+		 
+		 SortedSet<Integer> sortedSet = new TreeSet<>();
+
+		 sortedSet.add(30);
+		 sortedSet.add(10);
+		 sortedSet.add(10);
+		 sortedSet.add(20);
+		 
+		 System.out.println(sortedSet);
+		 System.out.println(sortedSet.size());		 
+	 } 
+	 
+ }
+ 
+// 3.(d) Tree set () : 
+ class JavaTreeSetExample{
+	 public static void main(String[] args) {
+		 
+		 SortedSet<Integer> tSet = new TreeSet<>();
+
+		 tSet.add(30);
+		 tSet.add(10);
+		 tSet.add(10);
+		 tSet.add(20);
+		 
+		 System.out.println(tSet);
+		 System.out.println(tSet.size());		 
+	 } 
+	 
+ }
+ 
+ //4.(a) Hash Map : Key-value pairs, No. Multiple null values allowed but One null key allowed. 
+ 
+ class JavaHashMapExample{
+	 public static void main(String[] args) {
+		 
+		 HashMap<Integer, String> map = new HashMap<>(); 
+		 map.put(101, "User1");
+		 map.put(102, "User2");
+		 map.put(103, null);
+		 map.put(null, "User4");
+		 map.put(105, null);
+		 
+		 System.out.println(map);
+		 
+		 
+	 }
+	   
+ }
+ 
+ // 4 (b) LinkedHashMap :  order maintained by default
+ 
+ class JavaLinkedHashMapExample{
+	 public static void main(String[] args) {
+		 
+		 LinkedHashMap<Integer, String> map = new LinkedHashMap<>(); 
+		 
+		 map.put(101, "User1");
+		 map.put(102, "User2");
+		 map.put(103, null);
+		 map.put(null, "User4");
+		 map.put(105, null);
+		 
+		 System.out.println(map);
+		 
+		 
+	 }
+	   
+ }
+ 
+ // 4.(c)  WeakHashMap : weak Reference , if key has not strong reference --> removed by garbage collector 
+ class JavaWeakHashMapExample{
+	 @SuppressWarnings("removal")
+	public static void main(String[] args) {
+		 WeakHashMap<Integer, String> Wmap = new WeakHashMap<>();
+		 
+		 Integer Key = new Integer(200);
+		 Wmap.put(Key, "Java");
+		 
+		 System.out.println("Before GC : "+ Wmap);
+		 
+		 Key = null; // remove strong reference 
+		 System.gc();
+		 try {
+			 Thread.sleep(2000);
+		 }catch(Exception e){
+			
+		 }
+		 System.out.println("After GC : "+ Wmap );
+		 
+	 }
+}
+ 
+// 4 (d) IdentityHashMap() : 
+ class JavaIdentityHashMapExample{
+	public static void main(String[] args) {
+		IdentityHashMap<Integer, String> Imap = new IdentityHashMap<>();
+		
+		@SuppressWarnings("removal")
+		Integer I1 = new Integer(10);
+		@SuppressWarnings("removal")
+		Integer I2 = new Integer(20);
+		
+		Imap.put(I1, "Python");
+		Imap.put(I2, "Java");
+		System.out.println(Imap);
+	}
+
+	}
