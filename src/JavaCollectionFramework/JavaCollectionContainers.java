@@ -4,7 +4,7 @@ import java.util.*;
 // 2. List :  ArrayList, LinkedList ,  Vector -->  Stack 
 // 3. Set : HashSet, LinkedHashSet, SortedSet , TreeSet
 // 4. Map : HashMap, LinkedHashMap, WeakHashMap , IdentityHashMap
-
+// 5. HashTable ;
 
 //1. Collection : 
 public class JavaCollectionContainers {
@@ -347,3 +347,45 @@ public class JavaCollectionContainers {
 	}
 
 	}
+ 
+ 
+//-----------------------------------------------------------------------------------------------------
+
+//Hash-table : Key-value pair, thread safe synchronized, legacy class, java.util package has access. key not duplicate but value can be, Null keys and values are not allowed. 
+      // order is not predefine. Allows heterogeneous objects. 
+
+//constructors : 
+//a.  Hashtable ht = new Hashtable();
+//b.  Hashtable ht = new Hashtable(int Initcapacity);
+//c.  Hashtable ht = new Hashtable(int capacity, float loadFactor);
+//d.  Hashtable ht = new Hashtable(Map m);
+
+class JavaHashTableDemo{
+	public static void main(String[] args) {
+		Hashtable<Tempdemo, String> h = new Hashtable<>();
+		
+		h.put(new Tempdemo(5), "A");
+		h.put(new Tempdemo(15), "C");
+		h.put(new Tempdemo(52), "B");
+		h.put(new Tempdemo(12), "Z");
+		h.put(new Tempdemo(11), "D");
+		
+		System.out.println(h);
+		
+	}
+}
+class Tempdemo{
+	int i;
+	
+	Tempdemo(int i){
+		this.i = i;
+	}
+	
+	public int hashCode() {
+		return i;    
+	}
+	
+	public String toString() {
+		return i + " ";
+	}
+}
