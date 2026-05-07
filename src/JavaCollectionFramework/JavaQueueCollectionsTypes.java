@@ -2,8 +2,6 @@ package JavaCollectionFramework;
 import java.util.*;
 import java.util.concurrent.*;
 // Queue and It's Types
-// HashTable In Java
-// Properties In Java
 
 
 // 1. Queue : (FIFO - First Input First OutPut)
@@ -133,8 +131,6 @@ class JavaBlockQueueDemo{
 }
 
 // example BlockingQueue with Producer and Consumer threads 
-
-
 
 class BlockingQueueDemo {
 
