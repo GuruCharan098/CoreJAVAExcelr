@@ -1,6 +1,6 @@
 package JavaCollectionFramework;
 import java.util.concurrent.*;
-
+import java.util.*;
 // Concurrent Collections : Advantages 
 // a. Thread-safe
 // b. Better performance 
@@ -9,8 +9,7 @@ import java.util.concurrent.*;
 
 // Important Concurrent Classes :
 
-//1. ConcurrentHashMap  : thread-safe Hash Map, read/write simultaneously, uses internal locking mechanism4
-
+//1. ConcurrentHashMap  : thread-safe Hash Map, read/write simultaneously, uses internal locking mechanism
 // Real-life Uses : 
 //Banking System
 // Web Servers
@@ -152,11 +151,106 @@ class Demo1{
 	}
 }
 
+// 4. CopyOnWriteArraySet : Duplicates are not allowed, Thread-safe , it read operations very fast..
 
+class JavaCopyOnWriteArraySet{
+	public static void main(String[] args) {
+		
+		CopyOnWriteArraySet<Integer> set = new CopyOnWriteArraySet<>();
+		
+		 Thread threadA = new Thread(()->{
+	   		 for(int i = 1; i<=5; i++) {
+	   			set.add(i);
+	   			System.out.println("Thread-1 Added"+ i);
+	   		 }
+	   	 });
+		 
+		 Thread threadB = new Thread(()->{
+	   		 for(int i = 6; i<=10; i++) {
+	   			set.add(i);
+	   			System.out.println("Thread-2 Added"+ i);
+	   		 }
+	   	 });
 
+		 threadA.start();
+		 threadB.start();
+		 
+		 try {
+			 threadA.join();
+			 threadB.join();
+		 }catch(Exception e) {
+			 e.printStackTrace();
+		 }
+		 
+		 System.out.println(set);
+	}
+}
 
+// Diff.. ConcurrentHashMap Vs SynchronizedMap()  Vs Hashtable  : 
 
+// 1. Thread safety locking :  for one by One ,  for whole , same as SynchronizedMap
+// 2. Multi-threading supports  : yes, No , No
+// 3.  read/write operation :      without lock for read and write with lock, if whole is locked then read/ write operation working , same as SynchronizedMap
+// 4. null, key or value role : null not allowed for key and value (both), allowed for key and value (both),  same as ConcurrentHashMap
+// 5. Intro version : 1.5 version, 1.2 version , 1.0 version
 
+//*******************************************************************************************************************************************
+//Important- Cases for Iterator :-
+
+// Fail-Fast Iterator : it's immediately throws a "ConcurrnetModificationException", if the collection (DS) is modified while iterating,
+//it' works directly on the original collection (DS). 
+
+// Useful Collections : ArrayList, LinkedList, HashMap, HashSet, Vector, TreeSet. 
+
+class JavaFailFastDemo{
+	public static void main(String[] args) {
+		
+		ArrayList<Integer> list = new ArrayList<>();
+		
+		list.add(10);
+		list.add(20);
+		list.add(30);
+		
+		Iterator<Integer> itr = list.iterator();
+		
+		while(itr.hasNext()) {
+			int i = itr.next();
+			
+			if(i==20)
+				itr.remove();
+			
+			System.out.println(i);
+			
+			// modification collection during Iteration 
+			//list.add(40);
+		}
+		System.out.println(list);
+	}
+}
+
+// Fail-Safe Iterator : A fail-safe Iterator does not throw exception even if collection is modified during iteration. 
+// it's works on clone copy or snapshot of the collection, 
+// So changes made during iteration do not affect iterator. 
+
+class JavaFailSafeDemo {
+	public static void main(String[] args) {
+		
+		CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>();
+		
+		
+		list.add(20);
+		list.add(30);
+		
+		for(Integer i : list) {
+			System.out.println(i);
+			
+			list.add(10);
+		}
+		
+		System.out.println(list);
+		
+	}
+}
 
 
 

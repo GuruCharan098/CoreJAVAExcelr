@@ -170,6 +170,94 @@ class BlockingQueueDemo {
     }
 }
 
+// Transfer Queue : make data transformation b/w two threads like Consumer thread, Producer threads. 
+// Constructor : TransferQueue<String> tq = new LinkedTransferQueue<>();
+
+class JavaTransferQueue{
+	public static void main(String[] args) {
+		TransferQueue<String> tq = new LinkedTransferQueue<>();
+		
+		//Consumer Thread : 
+		Thread consumer = new Thread(()->{
+			try {
+				Thread.sleep(3000);
+				
+				String data = tq.take();
+				System.out.println("Cousumed :"+ data);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		});
+			
+				
+		//Producer Thread
+		Thread producer = new Thread(()->{
+			
+			try {
+				System.out.println("Producer waiting to transfer....");
+				
+				tq.transfer("Java");
+				System.out.println("Transfer Completed");
+				
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		});
+		
+		consumer.start();
+		producer.start();
+		
+	}
+}
+
+// Blocking-Deque Interface :  Thread safe double ended blocking queue; using with LinkedBlockingDeque
+
+class JavaBlockingDeque{
+	public static void main(String[] args) {
+		
+		BlockingDeque<Integer> bd = new LinkedBlockingDeque<>(3);
+	
+		Thread producer = new Thread(()->{
+			try {
+				
+				bd.putLast(10);
+				System.out.println("Inserted : 10");
+				
+				bd.putLast(20);
+				System.out.println("Inserted : 20");
+				
+				bd.putFirst(30);
+				System.out.println("Inserted : 30");
+				
+				
+			}catch(Exception e) {
+			 e.printStackTrace();	
+			}
+		});
+		
+		Thread consumer = new Thread(()->{
+			try {
+				
+				Thread.sleep(2000);
+			
+				System.out.println("Remove First : " + bd.takeFirst());
+				
+				System.out.println("Remove Last : " + bd.takeLast());
+				
+				System.out.println(bd);
+			}catch(Exception e) {
+			 e.printStackTrace();	
+			}
+		});
+		
+		producer.start();
+		consumer.start();
+	}
+}
+
+
 
 
 
