@@ -24,7 +24,7 @@ public class JavaConcurrentCollections {
                 	 ConcurrentHashMap<Integer, String> CHmap = new ConcurrentHashMap<>();
                 	 
                 	 
-                	 Thread t1 = new Thread(()->{
+                	 Thread t1 = new Thread(() -> {
                 		 for(int i = 1; i<=5; i++) {
                 			 CHmap.put(i, "A" + i);
                 			 System.out.println("Thread-1 Added"+ i);
