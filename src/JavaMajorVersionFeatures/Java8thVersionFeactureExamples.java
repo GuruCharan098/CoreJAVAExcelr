@@ -96,23 +96,6 @@ class TestDemo{
 		td.m2();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //  1.  Runnable  run() :  java.lang package. 
 
 class MyRunnableDemo implements Runnable{
@@ -184,10 +167,75 @@ class CallableDemo{
     		   f.setVisible(true);
     	   }
        }
+// Method Reference : 
+       interface Sayable{
+    	   void say();
 
+       }   
+       class MethodRefDemo{
+    	   
+    	   public static void hello() {
+    		   System.out.println("Hello Java");
+    	   }
+    	   public static void main(String[] args) {
+    		   
+    		   Sayable s = MethodRefDemo :: hello;
+    		   
+    		   System.out.println(s);
+    		   s.say();
+    	   }
+       }
+    
+       
+ //  Lambda Expression VS Functional Interface
+//       1. Lambda Expression works only with FI,
+//          Whenever FI exists, lambda can be used. 
+       
+       
+       // Without Lambda Expression : 
+       interface Interf1 {
+    	   void methodOne();
+    	   
+       }
+       class DiffClass implements Interf1{
+    	   
+    	   public void methodOne() {
+    		   System.out.println("Method One Execution...");
+    	   }
+       }
+       class DemoResult{
+    	   public static void main(String[] args) {
+    		   
+    		   Interf1 i = new DiffClass();
+    		   i.methodOne();
+    	   }
+       }
+   
+       // With Lambda Expression :
+       interface Interf2{
+    	   void methodTwo(int a , int b );
+       }
+       
+       class Test{
+    	   public static void main(String[] args) {
+    		   Interf2 f2 = (a, b) -> System.out.println("Method Two execution...."+ (a+b));
+    		   
+    		   f2.methodTwo(23 , 77);
+    	   }
+       }
 
-///   C. Default Methods : 
-///   D. Predicates :  
-///   E. Functions  : 
-///   F. Stream API  : 
-///   G. Date and Time API  : 
+// Differences Interface with Default methods and abstract class.
+                         ///  Interface With default Method  !=  Abstract Class
+       
+ //      1. variable behavior is public, static and final , No chance of Instance. 
+              // may be a chance of instance variables. 
+       
+   //    2. can not declare Constructors,  
+                 //Can declare constructors. 
+       
+   //   3. FI with Default Method can refer Lambda Expression, 
+                // Can't refer Lambda Expression. 
+       
+    // 4.   Can't Override Methods , 
+           // Can Override Methods 
+       
