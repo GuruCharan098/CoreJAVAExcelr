@@ -5,6 +5,8 @@ import java.util.stream.*;
 
 // Java Streams J8 : java.util.stream packages. 
 
+
+//Difference B/w IO stream and Java Stream :
 /// Syntax of stream  : 
 
 //  List<Integer> list = Arrays.asList(10,20,30);
